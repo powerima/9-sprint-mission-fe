@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+}
+
+.appContainer {
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.userList {
+  list-style: none;
+  padding: 0;
+  border: 1px solid #ddd;
+  margin-top: 10px;
+  display: flex;
+  width: 1200px;
+}
+
+.userItem {
+  display:  flex;
+  flex-direction: column;
+  border-bottom: 1px solid #eee;
+  width: 282px;
+  margin: 10px;
+
+  img {
+    width: 282px;
+    height: 282px;
+    display: block;
+  }
+
+  strong {
+    color: #333;
+    display: block;
+    text-align: center;
+  }
+
+  span {
+    color: #888;
+    margin-left: 10px;
+    display: block;
+    text-align: center;
+  }
+
+  button {
+    background-color: #fff0f0;
+    border-color: #ffc9c9;
+    color: #d94848;
+
+    &:hover {
+      background-color: #ffe3e3;
+    }
+  }
+}
+
