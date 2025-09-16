@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import styles from './App.module.css';
+import ProductList from './ProductList';
+import BestProductList from './BestProductList';
+import ProductForSaleList from './ProductForSaleList';
 
 const initialUsers = [
       {
@@ -55,7 +58,7 @@ const initialUsers = [
     {
       "id": 197,
       "name": "갤럭시 버즈3",
-      "description": "버즈3 입니다~",
+      "description": "버즈3 입니S다~",
       "price": 500000,
       "tags": [
         "이어폰"
@@ -86,21 +89,11 @@ function App() {
   };
 
   return (
-    <div className={styles.appContainer}>
-      <h1>베스트 상품</h1>
-      <ul className={styles.userList}>
-        {users.map((user) => (
-          <li key={user.id} className={styles.userItem}>
-            <div>
-              <img className={styles.userThumbnail} src={user.images[0]}/>
-              <strong>{user.description}</strong>
-              <span>({user.price}원)</span>
-              <span>♡{user.favoriteCount}</span>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      
+      <BestProductList productList={users} />
+      <ProductForSaleList productList={users} />
+    </>
   );
 }
 
