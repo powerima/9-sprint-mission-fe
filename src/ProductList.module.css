@@ -1,0 +1,24 @@
+.appContainer {
+  width: 1200px;
+  border: 1px solid #545454
+}
+
+.productList {
+  display: flex;
+  flex-direction: row;
+}
+
+.productItem {  
+  color: #545454;
+  margin: 0 10px;
+
+  * {
+    display: block;
+    text-align: center;
+  }
+}
+
+.productThumbnail {
+  width: 282px;
+  height: 282px;
+}
