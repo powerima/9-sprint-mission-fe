@@ -3,7 +3,7 @@ import styles from './App.module.css';
 import ProductList from './ProductList';
 import BestProductList from './BestProductList';
 import ProductForSaleList from './ProductForSaleList';
-
+import PageHeader from './PageHeader';
 const initialUsers = [
       {
       "id": 226,
@@ -90,7 +90,7 @@ function App() {
 
   return (
     <>
-      
+      <PageHeader />
       <BestProductList productList={users} />
       <ProductForSaleList productList={users} />
     </>
