@@ -33,7 +33,7 @@ function PageHeader() {
         </a>
         <ul className={styles.menuList}>
           {menuList.map((menuItem) => (
-            <li id={menuItem.id} className={styles.menuItem}>
+            <li key={menuItem.id} className={styles.menuItem}>
               <a href={menuItem.link}>{menuItem.name}</a>
             </li>
           ))}
