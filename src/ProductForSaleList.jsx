@@ -14,10 +14,14 @@ function ProductForSaleList ({ productList }) {
             <img className={styles.searchInputIcon} src={searchInputIcon}/>
           </div>
           <button className={styles.regBtn}>상품 등록하기</button>
-          <select className={styles.orderSelector}>
-            <option>최신순</option>
-            <option>좋아요</option>
-          </select>
+
+          <div className={styles.orderSelector}>
+            <button className={styles.orderBtn}>최신순<img src="/src/assets/icon_order.svg"/></button>            
+            <div className={styles.orderBtnList}>
+              <button className={styles.orderBtn}>최신순</button>
+              <button className={styles.orderBtn}>좋아요</button>
+            </div>
+          </div>
         </div>
       </div>
       <ProductList productList={productList} />
