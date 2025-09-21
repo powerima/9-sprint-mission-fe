@@ -1,10 +1,25 @@
 
+.productListComponent {
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+
 
 .gnb {
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  align-items: center;
+  margin: 0;
 }
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
 
 .listOptionContainer {
   display: flex;
@@ -22,8 +37,6 @@
     background: #1967d6;
   }
 }
-
-
 
 .orderSelector {
   & > button {
@@ -49,19 +62,19 @@
   }
 
   &:active .orderBtnList {
-    display: block;
+    visibility: visible;
   }
   
 }
 
 .orderSelector > .orderBtnList {
-  display: none;
-  /* display: flex;
-  flex-direction: column; */
+  display: flex;
+  flex-direction: column;
   border-radius: 12px;
   margin-top: 8px;
   position: absolute;
   z-index: 1;
+  visibility: hidden;
   
 
   & > button {
@@ -99,19 +112,16 @@
     font-size: 16px;
     color: var(--Secondary-400);
     border: none;
-  
-    &::placeholder {
-      position: absolute;
-      top: 9px;
-      left: 44px;      
-      
-    }
+    padding-left: 44px;
+    
   }
 
   .searchInputIcon {
     position: absolute;
     width: 24px;
-    top: 9px;
+    top: 13px;
+    width: 15px;
+    height: 15px;
     left: 16px;   
   }
-}
+} 

@@ -7,7 +7,7 @@
 */
 import styles from './ProductList.module.css'
 
-function ProductList( {productList} ) {
+export function ProductList( {productList} ) {
   
   const handleSortByName = () => {
 
@@ -29,4 +29,3 @@ function ProductList( {productList} ) {
     </div>
   );
 }
-export default ProductList;

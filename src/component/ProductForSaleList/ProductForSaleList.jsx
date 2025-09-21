@@ -1,13 +1,15 @@
-import ProductList from "./ProductList";
+import { ProductList } from "/src/component/ProductList";
 import styles from "./ProductForSaleList.module.css";
-import searchInputIcon from "./assets/search.svg";
-function ProductForSaleList ({ productList }) {
+import searchInputIcon from "/src/assets/search.svg";
+
+
+export function ProductForSaleList ({ productList }) {
 
 
   return (
-    <>
+    <div className={styles.productListComponent}>
       <div className={styles.gnb}>
-        <span>판매중인 상품</span>
+        <h2 className={styles.title}>판매중인 상품</h2>
         <div className={styles.listOptionContainer}>
           <div className={styles.searchInputWrap}>
             <input className={styles.searchInput} placeholder="검색할 상품을 입력해주세요"/>
@@ -25,8 +27,6 @@ function ProductForSaleList ({ productList }) {
         </div>
       </div>
       <ProductList productList={productList} />
-    </>
+    </div>
   );
 }
-
-export default ProductForSaleList;

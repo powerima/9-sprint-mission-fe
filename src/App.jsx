@@ -1,9 +1,22 @@
 import { useState } from 'react';
 import styles from './App.module.css';
-import ProductList from './ProductList';
-import BestProductList from './BestProductList';
-import ProductForSaleList from './ProductForSaleList';
+import ProductListPage from './ProductListPage';
 import PageHeader from './PageHeader';
+import mock from './mock.json';
+
+
+
+// const getMenuList = function() {
+//   const url = './mock.json';
+//   console.log(url);
+//   // const response = fetch(url);
+
+//   console.log('mock -> ', mock);
+
+//   return initialUsers;
+// };
+
+
 const initialUsers = [
       {
       "id": 226,
@@ -74,8 +87,10 @@ const initialUsers = [
 
 ];
 
+
+
 function App() {
-  const [ users, setUsers ] = useState(initialUsers);
+  const [ menuList, setUsers ] = useState(initialUsers);
   const handleSortByName = () => {
 
   };
@@ -84,15 +99,21 @@ function App() {
 
   };
 
-  const test = () => {
-    console.log('users => ', users);
+  const test = async () => {
+    const url = './mock.json';
+    const response = await fetch(url);
+    const data = await response.json();
+
+    console.log('url -> ', url);
+    console.log('reponse => ', response);
+    console.log('data -> ', data);
   };
 
+  // test();
   return (
     <>
       <PageHeader />
-      <BestProductList productList={users} />
-      <ProductForSaleList productList={users} />
+      <ProductListPage ProductList={menuList}/>
     </>
   );
 }

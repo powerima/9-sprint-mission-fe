@@ -6,11 +6,12 @@
 .productList {
   display: flex;
   flex-direction: row;
+  gap: 20px;
 }
 
 .productItem {  
   color: #545454;
-  margin: 0 10px;
+  width: 282px;
 
   * {
     display: block;
