@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { getProducts } from "../../../api/itemApi";
 import ItemCard from "./ItemCard";
-import { ReactComponent as SortIconMobile } from "../../../assets/images/icons/ic_sort_mobile.svg";
-import { ReactComponent as SortIconArrowDown } from "../../../assets/images/icons/ic_arrow_down.svg";
+import { ReactComponent as SortIcon } from "../../../assets/images/icons/ic_sort.svg";
 import { ReactComponent as SearchIcon } from "../../../assets/images/icons/ic_search.svg";
-import DropdownList from "../../../components/UI/DropdownList";
+import { Link } from "react-router-dom";
+import DropdownMenu from "../../../components/UI/DropdownMenu";
 import PaginationBar from "../../../components/UI/PaginationBar";
 
 const getPageSize = () => {
@@ -26,45 +26,30 @@ function AllItemsSection() {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(getPageSize());
   const [itemList, setItemList] = useState([]);
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [totalPageNum, setTotalPageNum] = useState();
-  const [keyword, setKeyword] = useState("");
+  const [word, setWord] = useState(""); // 검색어 상태 추가
 
-  const fetchSortedData = async ({ orderBy, page, pageSize, keyword }) => {
-    const products = await getProducts({ orderBy, page, pageSize, keyword });
-    setItemList(products.list);
-    setTotalPageNum(Math.ceil(products.totalCount / pageSize));
+  // 변경된 API 구조에 맞는 데이터 패치 함수
+  const fetchSortedData = async ({ orderBy, page, pageSize, word }) => {
+    const skip = (page - 1) * pageSize;
+    const take = pageSize;
+
+    const products = await getProducts({
+      orderBy,
+      skip,
+      take,
+      word: word ? word : undefined,
+    }); // 검색어 추가
+    setItemList(products.data); // 변경된 API 응답에 맞게 data 사용
+    setTotalPageNum(Math.ceil(products.count / pageSize)); // count 사용
   };
 
   const handleSortSelection = (sortOption) => {
     setOrderBy(sortOption);
-    setIsDropdownVisible(false);
   };
 
-  const handleInputChange = (event) => {
-    setKeyword(event.target.value);
-  };
-
-  const handleSearch = () => {
-    setPage(1);
-    fetchSortedData({ orderBy, page: 1, pageSize, keyword });
-  };
-
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      handleSearch();
-    }
-  };
-
-  const convertToKorean = (orderBy) => {
-    switch (orderBy) {
-      case "recent":
-        return "최신순";
-      case "favorite":
-        return "인기순";
-      default:
-        return "최신순";
-    }
+  const handleSearch = (e) => {
+    setWord(e.target.value);
   };
 
   useEffect(() => {
@@ -73,55 +58,37 @@ function AllItemsSection() {
     };
 
     window.addEventListener("resize", handleResize);
-    fetchSortedData({ orderBy, page, pageSize, keyword });
+    fetchSortedData({ orderBy, page, pageSize, word });
 
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [orderBy, page, pageSize, keyword]);
-
-  const toggleDropdown = () => {
-    setIsDropdownVisible(!isDropdownVisible);
-  };
+  }, [orderBy, page, pageSize, word]);
 
   const onPageChange = (pageNumber) => {
     setPage(pageNumber);
-    fetchSortedData({ orderBy, page: pageNumber, pageSize, keyword });
   };
 
   return (
-    <div>
+    <div className="allItemsContainer">
       <div className="allItemsSectionHeader">
         <h1 className="sectionTitle">판매 중인 상품</h1>
+        <Link to="/registration" className="loginLink button">
+          상품 등록하기
+        </Link>
+      </div>
 
+      <div className="allItemsSectionHeader">
         <div className="searchBarWrapper">
           <SearchIcon />
           <input
             className="searchBarInput"
             placeholder="검색할 상품을 입력해 주세요"
-            value={keyword}
-            onChange={handleInputChange}
-            onKeyPress={handleKeyPress}
+            value={word}
+            onChange={handleSearch} // 검색어 입력 핸들러 추가
           />
         </div>
-        <div to="/additem" className="createItemButton button">
-          상품 등록하기
-        </div>
-        <div className="sortButtonWrapper">
-          <button
-            className="sortDropdownTriggerButton"
-            onClick={toggleDropdown}
-          >
-            <div className="sortBtn">
-              <span>{convertToKorean(orderBy)}</span>
-              <SortIconArrowDown />
-            </div>
-            <SortIconMobile className="mobileSortBtn" />
-          </button>
-          {isDropdownVisible && (
-            <DropdownList onSortSelection={handleSortSelection} />
-          )}
-        </div>
+        <DropdownMenu onSortSelection={handleSortSelection} />
       </div>
 
       <div className="allItemsCardSection">

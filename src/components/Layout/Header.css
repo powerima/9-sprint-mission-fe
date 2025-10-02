@@ -27,7 +27,7 @@
   padding: 11.5px 23px;
 }
 
-@media (min-width: 744px) {
+@media (min-width: 768px) {
   .globalHeader nav ul {
     gap: 36px;
     font-size: 18px;

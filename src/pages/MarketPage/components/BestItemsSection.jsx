@@ -4,7 +4,7 @@ import { getProducts } from "../../../api/itemApi";
 
 const getPageSize = () => {
   const width = window.innerWidth;
-  if (width < 744) {
+  if (width < 768) {
     // Mobile viewport
     return 1;
   } else if (width < 1280) {

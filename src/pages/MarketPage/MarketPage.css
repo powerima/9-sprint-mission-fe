@@ -3,7 +3,6 @@
   font-weight: bold;
   font-size: 20px;
   line-height: normal;
-  margin-bottom: 16px;
 }
 
 .itemCard {
@@ -62,19 +61,22 @@
   gap: 32px 8px;
 }
 
+.allItemsContainer {
+  padding-top: 26px;
+}
+
 .allItemsSectionHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.sortButtonWrapper {
-  position: relative;
+.allItemsSectionHeader:first-child {
+  padding-bottom: 8px;
 }
 
-.sortDropdownTriggerButton {
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
+.allItemsSectionHeader:nth-child(2) {
+  padding-bottom: 16px;
 }
 
 .searchBarWrapper {
@@ -84,7 +86,6 @@
   padding: 9px 16px;
   flex: 1;
   align-items: center;
-  width: 289px;
 }
 
 .searchBarInput {
@@ -103,37 +104,12 @@
   outline: none;
 }
 
-.createItemButton {
-  margin: 0px 12px;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 8px;
-  padding: 11.5px 23px;
-}
-
 .paginationBarWrapper {
   padding-top: 40px;
   padding-bottom: 80px;
 }
 
-.sortBtn {
-  width: 130px;
-  padding: 12px 20px;
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  flex-shrink: 0;
-
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-}
-.mobileSortBtn {
-  display: none;
-}
-
-@media (min-width: 744px) {
+@media (min-width: 768px) {
   .bestItemsContainer {
     margin-bottom: 40px;
   }
@@ -142,11 +118,6 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
-  }
-
-  .allItemsSectionHeader {
-    display: grid;
-    grid-template-columns: 1fr auto auto auto;
   }
 
   .allItemsCardSection {
@@ -163,53 +134,5 @@
   .allItemsCardSection {
     grid-template-columns: repeat(5, 1fr);
     gap: 40px 24px;
-  }
-}
-@media (max-width: 1199px) {
-  .searchBarInput {
-    width: 206px;
-  }
-}
-
-@media (max-width: 744px) {
-  .allItemsSectionHeader {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .sectionTitle {
-    flex: 1 1 auto;
-    order: 1;
-  }
-
-  .createItemButton {
-    flex: 0 0 auto;
-    order: 2;
-  }
-
-  .searchBarWrapper {
-    flex: 1 1 auto;
-    display: flex;
-    width: calc(100% - 60px); /* 두 번째 줄에서 가능한 모든 공간을 차지 */
-    order: 3;
-  }
-
-  .sortButtonWrapper {
-    flex: 0 0 auto;
-    align-self: flex-end;
-    order: 4;
-  }
-
-  .sortDropdownTriggerButton {
-    padding: 9px;
-  }
-
-  .mobileSortBtn {
-    display: inline;
-  }
-
-  .sortBtn {
-    display: none;
   }
 }
